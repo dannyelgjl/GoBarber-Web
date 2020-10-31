@@ -25,7 +25,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     setIsFocused(false);
 
     // Maneira 2 - se o input estiver vazio ele vai colocar como - false, se estiver preenchido - true.
-    setIsField(!!inputRef.current?.value);
+    setIsField(!!inputRef.current?.value); // !! = transoformando algo para boolean
 
     // maneira 1 de validar se tem algum dado no input para que o ícone fique laranja
     /*if (inputRef.current?.value) {

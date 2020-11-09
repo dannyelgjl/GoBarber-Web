@@ -3,7 +3,7 @@ import React from 'react';
 import SingIn from './pages/SingIn';
 //import SingUp from './pages/SingUp';
 
-import AuthContext from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 
 import GlobalStyle from './styles/global';
 
@@ -11,9 +11,9 @@ import GlobalStyle from './styles/global';
 const App: React.FC = () => {
   return (
     <>
-      <AuthContext.Provider value={{ name: 'Daniel' }}>
+      <AuthProvider>
         <SingIn />
-      </AuthContext.Provider>
+      </AuthProvider>
 
       <GlobalStyle />
     </>

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useContext } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup'
@@ -10,7 +10,7 @@ import logo from '../../assets/logo.svg';
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 import { Container, Content, Background } from './styles';
 
@@ -23,9 +23,9 @@ interface SingInFormData {
 const SingIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { user, singIn } = useContext(AuthContext);
+  const { user, singIn } = useAuth();
 
-  console.log(user);
+  console.log(user)
 
   const handleSubmit = useCallback(async (data: SingInFormData) => {
     try {

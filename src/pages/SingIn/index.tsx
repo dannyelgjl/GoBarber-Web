@@ -47,10 +47,13 @@ const SingIn: React.FC = () => {
         password: data.password,
       });
     } catch (err) {
-      const errors = getValidationErrors(err);
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
 
-      formRef.current?.setErrors(errors);
-      console.log(err);
+        formRef.current?.setErrors(errors);
+      }
+
+      // disparar um toast
     }
   }, [singIn]);
   console.log(formRef);

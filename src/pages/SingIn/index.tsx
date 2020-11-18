@@ -10,7 +10,8 @@ import logo from '../../assets/logo.svg';
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 import { Container, Content, Background } from './styles';
 
@@ -23,9 +24,9 @@ interface SingInFormData {
 const SingIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { user, singIn } = useAuth();
+  const { singIn } = useAuth();
+  const { addToast } = useToast();
 
-  console.log(user)
 
   const handleSubmit = useCallback(async (data: SingInFormData) => {
     try {
@@ -42,7 +43,7 @@ const SingIn: React.FC = () => {
 
       console.log(data);
 
-      singIn({
+      await singIn({
         email: data.email,
         password: data.password,
       });
@@ -54,8 +55,9 @@ const SingIn: React.FC = () => {
       }
 
       // disparar um toast
+      addToast();
     }
-  }, [singIn]);
+  }, [singIn, addToast]);
   console.log(formRef);
 
   return (
